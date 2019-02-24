@@ -10,15 +10,14 @@
   ******************************************************************************
   */  
 /* Includes ------------------------------------------------------------------*/
-#include "app.h"
+#include "OS_Task.h"
 /* Varibales -----------------------------------------------------------------*/
-const u16 REG[]={0xC380,0xD380,0xE380,0xF380};				//ADS1115四个通道寄存器地址
+const u16 REG[]={0xC380,0xD380,0xE380,0xF380};				
 u16 RegValue[8] = {0}; 
-float Voltage[8] = {0};																//四个通道寄存器值
-u8 Version[13] = {'Z','1','8','B','_','P','P'					//版本信息
+float Voltage[8] = {0};																
+u8 Version[13] = {'Z','1','8','B','_','P','P'					
 									,'1','_','V','0','0','0'};
 									
-//传感器变量
 char tem = 0;
 u8 hum = 0;
 float Degree = 0,Vel = 0;
@@ -33,9 +32,154 @@ float NB_Buffer[11]={0};
 char T_varible[11][4] = {0};
 /* Functions -----------------------------------------------------------------*/
 
+TaskHandle_t APP_Start_Handler;
+TaskHandle_t Led0_Task_Handler;
+TaskHandle_t Switch_Task_Handler;
+TaskHandle_t Led1_Task_Handler;
+TaskHandle_t Led2_Task_Handler;
+TaskHandle_t TimerControlTask_Handler;
+TimerHandle_t AutoReloadTimer_Handle;
+
+void APP_Start(void *pvParameters)
+{
+  taskENTER_CRITICAL();         
+  MessageBufferHandle_t BufferFromDma;
+	const size_t BufferFromDmaSizeBytes = BUFFER_LENTH;
+	AutoReloadTimer_Handle = xTimerCreate((const char*)"timer",
+										  (TickType_t)500,
+										  (UBaseType_t	)pdTRUE, 
+										  (void *)1,
+										  (TimerCallbackFunction_t)AutoReloadCallback);
+	
+    xTaskCreate((TaskFunction_t )Led0_Task,     	
+                (const char*    )"Led0_Task",   	
+                (uint16_t       )LED0_STK_SIZE, 
+                (void*          )NULL,				
+                (UBaseType_t    )LED0_TASK_PRIO,	
+                (TaskHandle_t*  )&Led0_Task_Handler); 
+ 
+    xTaskCreate((TaskFunction_t )Switch_Task,     	
+                (const char*    )"Switch_Task",   	
+                (uint16_t       )SWITCH_TASK_STK_SIZE, 
+                (void*          )NULL,				
+                (UBaseType_t    )SWITCH_TASK_PRIO,	
+                (TaskHandle_t*  )&Switch_Task_Handler);  			
+		
+    xTaskCreate((TaskFunction_t )timercontrol_task,             
+                (const char*    )"timercontrol_task",           
+                (uint16_t       )TIMERCONTROL_STK_SIZE,        
+                (void*          )NULL,                  
+                (UBaseType_t    )TIMERCONTROL_TASK_PRIO,        
+                (TaskHandle_t*  )&TimerControlTask_Handler);  
+		vTaskDelete(APP_Start_Handler);
+    taskEXIT_CRITICAL();           	 
+		xTimerStart(AutoReloadTimer_Handle,0);
+}
+void Led0_Task(void *pvParameters)
+{
+    while(1)
+    {
+			STM32_LED_SDCARD = !STM32_LED_SDCARD;							 
+			printf("task 0 is running!\r\n");
+			vTaskDelay(500);
+    }
+}
+void Switch_Task(void *pvParameters)
+{
+	while(1)
+	{
+		printf("task 1 is running!\r\n");
+		vTaskDelay(1500);
+	}
+
+}
+void Led1_Task(void *pvParameters)
+{
+    while(1)
+    {
+		printf("task 2 is running!\r\n");
+		vTaskDelay(1000);
+    }
+}
+void Led2_Task(void *pvParameters)
+{
+    while(1)
+    {						 
+		printf("task 3 is running!\r\n");
+		vTaskDelay(30);
+    }
+}
+void timercontrol_task(void *pvParameters)
+{
+	xTimerStart(AutoReloadTimer_Handle,0);
+	vTaskDelete(TimerControlTask_Handler);
+}
+
+void AutoReloadCallback( TimerHandle_t xTimer )
+{
+	
+}
+
+void ADS1115_GetData(void)
+{	
+	taskENTER_CRITICAL();           
+	for(int i = 0;i < 4;i++)	
+	{
+		WindADS1115_WriteToRegister(CONFREG, REG[i]); 	
+		if(WINDADS1115_RDYPIN)
+		{
+			RegValue[i] = WindADS1115_ReadFromRegister(CVSNREG);
+		}
+	}
+	for(int i = 4;i < 8;i++)
+	{
+		GasADS1115_WriteToRegister(CONFREG, REG[i-4]);
+		if(GASADS1115_RDYPIN)
+		{
+			RegValue[i] = GasADS1115_ReadFromRegister(CVSNREG);
+		}
+	}
+	taskEXIT_CRITICAL();           	 
+}
+
+void ADS1115_DataProcess_Task(void *pvParameters)
+{
+	for(int i = 0; i < 8;i++)
+	{
+		Voltage[i] = (RegValue[i]*4.096/32768.0);			
+	}
+	
+}	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /********************************************************************
 **Function: APP_Start
-**Note 		: 应用层入口
+**Note 		: 
 **Input 	: None
 **Output 	: None
 **Use 		: APP_Start();
@@ -49,23 +193,23 @@ char T_varible[11][4] = {0};
 //		case NB_TEST:
 //			for(int i = 0;i < 4;i++)													
 //				{	
-//					WindADS1115_WriteToRegister(CONFREG, REG[i]); 	//开始读写
-//					if(WINDADS1115_RDYPIN) 													//如果转换完成 Pin为高电平
+//					WindADS1115_WriteToRegister(CONFREG, REG[i]); 	
+//					if(WINDADS1115_RDYPIN) 													
 //					{
-//						RegValue[i] = WindADS1115_ReadFromRegister(CVSNREG);//读取寄存器值
-//						Voltage[i] = (RegValue[i]*4.096/32768.0);			//转换成实际电压
+//						RegValue[i] = WindADS1115_ReadFromRegister(CVSNREG);
+//						Voltage[i] = (RegValue[i]*4.096/32768.0);			
 //						if(i==0)
 //						{
 //							STM32_LED_WS=!STM32_LED_WS;
 //							if (Voltage[0]>0&&Voltage[0]<3.0)
-//								Vel = Voltage[0]*3.67782;										//转换为速度  方法请参见产品文档
+//								Vel = Voltage[0]*3.67782;										
 //							else Vel = 0;
 //						}							
 //						if(i==1)
 //						{
 //							STM32_LED_WD=!STM32_LED_WD;
 //							if(Voltage[1]>0&&Voltage[1]<3.0)
-//								Degree = Voltage[1]*165.1376;											//转换为角度  方法请参见产品文档
+//								Degree = Voltage[1]*165.1376;											
 //						}						
 //						if(i==2) 
 //						{
@@ -78,20 +222,20 @@ char T_varible[11][4] = {0};
 //							O3 = Voltage[3];
 //						}
 //					}
-//					delay_ms(10);																		//通道切换时间10ms (必需)
+//					delay_ms(10);																		
 //				}
 
 //				//ADC2
 //				for(int i = 4;i < 8;i++)													
 //				{	
-//					GasADS1115_WriteToRegister(CONFREG, REG[i-4]); 		//开始读写
-//					if(GASADS1115_RDYPIN) 														//如果转换完成 Pin为高电平
+//					GasADS1115_WriteToRegister(CONFREG, REG[i-4]); 		
+//					if(GASADS1115_RDYPIN) 														
 //					{
-//						RegValue[i] = GasADS1115_ReadFromRegister(CVSNREG); //读取寄存器值
-//						Voltage[i] = (RegValue[i]*4.096/32768.0);				//转换成实际电压
+//						RegValue[i] = GasADS1115_ReadFromRegister(CVSNREG);
+//						Voltage[i] = (RegValue[i]*4.096/32768.0);				
 //						if(i==4)
 //						{
-//							//空
+//							
 //						}
 //						if(i==5)
 //						{
@@ -108,10 +252,10 @@ char T_varible[11][4] = {0};
 //							//PH
 //						}
 //					}
-//					delay_ms(10);																			//通道切换时间10ms (必需)
+//					delay_ms(10);																			
 //				}
 //				
-//			SHT31_Read(&tem,&hum);																//读取SHT31
+//			SHT31_Read(&tem,&hum);																
 //			Press = (u32)BMP180_Update();	
 //			
 //			NB_Buffer[0] = tem;
@@ -126,11 +270,11 @@ char T_varible[11][4] = {0};
 //			NB_Buffer[9] = Vel;
 //			NB_Buffer[10] = Degree;
 //				
-//			//重新初始化DMA，使数据从BUFFER头更新
-//			USART_Cmd(USART2,DISABLE);											//失能串口
-//			DMA_Cmd(DMA1_Channel6,DISABLE);									//失能DMA
+//			
+//			USART_Cmd(USART2,DISABLE);										
+//			DMA_Cmd(DMA1_Channel6,DISABLE);									
 //			memset(&oneNetDevice,0,sizeof(oneNetDevice));
-//			memset(USART2_RX_BUF,0,sizeof(USART2_RX_BUF));	//清缓存
+//			memset(USART2_RX_BUF,0,sizeof(USART2_RX_BUF));	
 //			DMA_InitTypeDef dma;
 //			DMA_DeInit(DMA1_Channel6);
 //			dma.DMA_PeripheralBaseAddr = (uint32_t)&(USART2->DR);
@@ -149,20 +293,19 @@ char T_varible[11][4] = {0};
 //			USART_Cmd(USART2,ENABLE);	
 //			
 //			delay_ms(1000);
-//			if(err_stat == 0)															//如果模块没有问题 err_stat == 0
-//			{																							//不删除注册信息，只打开链路
+//			if(err_stat == 0)															
+//			{																							
 //				RegistrationRequestStatus = NB_SendRegistrationRequest_2();
-//			}else if(err_stat == 1)												//如果模块有问题 err_stat == 1
-//			{																							//删除注册信息，重新配置
-//				USART_Cmd(USART2,DISABLE);									//失能串口
-//				DMA_Cmd(DMA1_Channel6,DISABLE);							//失能DMA
-//				NB_IOT_RESET = 0;														//NB模块硬件复位
+//			}else if(err_stat == 1)												
+//			{																							
+//				USART_Cmd(USART2,DISABLE);									
+//				DMA_Cmd(DMA1_Channel6,DISABLE);						
+//				NB_IOT_RESET = 0;														
 //				delay_ms(500);
 //				NB_IOT_RESET = 1;
 //				for(int i = 0; i< 10 ;i++) delay_ms(1000);	//10s
-//				USART_Cmd(USART2,ENABLE);										//失能串口
-//				DMA_Cmd(DMA1_Channel6,ENABLE);							//失能DMA
-//				//重新注册对象
+//				USART_Cmd(USART2,ENABLE);										
+//				DMA_Cmd(DMA1_Channel6,ENABLE);							
 //				NB_InitConnectOneNet();	
 //				NB_DeleteRegistrationRequest();
 //				delay_ms(1000);delay_ms(1000);
@@ -172,7 +315,7 @@ char T_varible[11][4] = {0};
 //				printf("AT+MIPLCLOSE=0\r\n");
 //				delay_ms(1000);
 //				memset(&oneNetDevice,0,sizeof(oneNetDevice));
-//				memset(USART2_RX_BUF,0,sizeof(USART2_RX_BUF));	//清缓存
+//				memset(USART2_RX_BUF,0,sizeof(USART2_RX_BUF));	
 //				delay_ms(1000);
 //				RegistrationRequestStatus = 0;
 //				err_stat = 0;

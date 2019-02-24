@@ -1,7 +1,6 @@
 ..\obj\bsp.o: ..\BSP\bsp.c
 ..\obj\bsp.o: ..\BSP\bsp.h
-..\obj\bsp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-..\obj\bsp.o: ..\..\ARM-Cortex-M3\SYSTEM\delay\delay.h
+..\obj\bsp.o: ..\BSP\led\led.h
 ..\obj\bsp.o: ..\..\ARM-Cortex-M3\SYSTEM\sys\sys.h
 ..\obj\bsp.o: ..\..\ARM-Cortex-M3\CORE\stm32f10x.h
 ..\obj\bsp.o: ..\..\ARM-Cortex-M3\CORE\core_cm3.h
@@ -32,13 +31,14 @@
 ..\obj\bsp.o: ..\..\ARM-Cortex-M3\FWLib\inc\stm32f10x_usart.h
 ..\obj\bsp.o: ..\..\ARM-Cortex-M3\FWLib\inc\stm32f10x_wwdg.h
 ..\obj\bsp.o: ..\..\ARM-Cortex-M3\FWLib\inc\misc.h
-..\obj\bsp.o: ..\BSP\led\led.h
 ..\obj\bsp.o: ..\BSP\timer\timer.h
 ..\obj\bsp.o: ..\PTC\ptc.h
 ..\obj\bsp.o: ..\PTC\gy68\bmp180.h
 ..\obj\bsp.o: ..\BSP\iic\iic_HTS.h
+..\obj\bsp.o: ..\..\ARM-Cortex-M3\SYSTEM\delay\delay.h
 ..\obj\bsp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 ..\obj\bsp.o: ..\PTC\ads1115\ads1115.h
+..\obj\bsp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\bsp.o: ..\BSP\iic\iic_ADS.h
 ..\obj\bsp.o: ..\PTC\sht31\sht31.h
 ..\obj\bsp.o: ..\BSP\bsp.h
@@ -65,5 +65,4 @@
 ..\obj\bsp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\bsp.o: ..\ALG\kalman\kalman.h
 ..\obj\bsp.o: ..\BSP\usart\usart3_pm.h
-..\obj\bsp.o: ..\APP\app.h
 ..\obj\bsp.o: ..\BSP\iwdog\iwdog.h

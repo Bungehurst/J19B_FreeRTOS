@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\ARM-Cortex-M3\CORE;..\..\ARM-Cortex-M3\FWLib\inc;..\..\ARM-Cortex-M3\SYSTEM\delay;..\..\ARM-Cortex-M3\SYSTEM\sys;..\..\SystemView\SEGGER;..\BSP;..\APP;..\PTC;..\BSP\iic;..\BSP\led;..\BSP\timer;..\BSP\usart;..\PTC\ads1115;..\PTC\gy68;..\PTC\sht31;..\ALG\kalman;..\ALG\avrfilter;..\PTC\nb-iot;..\ALG\hexstring;..\BSP\iwdog;..\..\FreeRTOS\include;..\..\FreeRTOS\portable\RVDS\ARM_CM3;..\..\SystemView\Config;..\..\SystemView\Sample\FreeRTOSV10\Config;..\..\SystemView\Sample\FreeRTOSV10\Patch;..\..\SystemView\Sample\FreeRTOSV10</IncludePath>
+              <IncludePath>..\..\ARM-Cortex-M3\CORE;..\..\ARM-Cortex-M3\FWLib\inc;..\..\ARM-Cortex-M3\SYSTEM\delay;..\..\ARM-Cortex-M3\SYSTEM\sys;..\..\SystemView\SEGGER;..\BSP;..\APP;..\PTC;..\BSP\iic;..\BSP\led;..\BSP\timer;..\BSP\usart;..\PTC\ads1115;..\PTC\gy68;..\PTC\sht31;..\ALG\kalman;..\ALG\avrfilter;..\PTC\nb-iot;..\ALG\hexstring;..\BSP\iwdog;..\..\FreeRTOS\include;..\..\FreeRTOS\portable\RVDS\ARM_CM3;..\..\SystemView\Config;..\..\SystemView\Sample\FreeRTOSV10\Config;..\..\SystemView\Sample\FreeRTOSV10\Patch;..\..\SystemView\Sample\FreeRTOSV10;..\USR</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -414,6 +414,11 @@
               <FileName>timers.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\FreeRTOS\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>stream_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\FreeRTOS\stream_buffer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -621,9 +626,9 @@
           <GroupName>APP</GroupName>
           <Files>
             <File>
-              <FileName>app.c</FileName>
+              <FileName>OS_Task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\APP\app.c</FilePath>
+              <FilePath>..\APP\OS_Task.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -651,9 +656,14 @@
           <GroupName>USR</GroupName>
           <Files>
             <File>
+              <FileName>includes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\includes.h</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\APP\main.c</FilePath>
+              <FilePath>.\main.c</FilePath>
             </File>
           </Files>
         </Group>

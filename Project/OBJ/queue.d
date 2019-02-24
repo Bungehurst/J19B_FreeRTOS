@@ -53,7 +53,6 @@
 ..\obj\queue.o: ..\BSP\bsp.h
 ..\obj\queue.o: ..\ALG\kalman\kalman.h
 ..\obj\queue.o: ..\BSP\usart\usart3_pm.h
-..\obj\queue.o: ..\APP\app.h
 ..\obj\queue.o: ..\BSP\usart\usart2_send.h
 ..\obj\queue.o: ..\BSP\iwdog\iwdog.h
 ..\obj\queue.o: ..\PTC\nb-iot\nbiot.h

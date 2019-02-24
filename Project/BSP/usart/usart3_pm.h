@@ -1,9 +1,11 @@
 #ifndef __USART3_PM_H
 #define __USART3_PM_H
+#include "sys.h"
 
-#include "bsp.h"
-#include "ptc.h"
-#include "app.h"
+#define BUFFER_LENTH 10
+extern u8 buffer_usart3[BUFFER_LENTH];
+extern u8 buffer_temp[BUFFER_LENTH];
+extern u8 buffer_inorder[BUFFER_LENTH];
 
 void USART3_PM_Init(u32 bound);
 void packet_dec(void);

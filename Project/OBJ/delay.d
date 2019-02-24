@@ -51,7 +51,6 @@
 ..\obj\delay.o: ..\BSP\bsp.h
 ..\obj\delay.o: ..\ALG\kalman\kalman.h
 ..\obj\delay.o: ..\BSP\usart\usart3_pm.h
-..\obj\delay.o: ..\APP\app.h
 ..\obj\delay.o: ..\BSP\usart\usart2_send.h
 ..\obj\delay.o: ..\BSP\iwdog\iwdog.h
 ..\obj\delay.o: ..\PTC\nb-iot\nbiot.h

@@ -52,7 +52,6 @@
 ..\obj\heap_4.o: ..\BSP\bsp.h
 ..\obj\heap_4.o: ..\ALG\kalman\kalman.h
 ..\obj\heap_4.o: ..\BSP\usart\usart3_pm.h
-..\obj\heap_4.o: ..\APP\app.h
 ..\obj\heap_4.o: ..\BSP\usart\usart2_send.h
 ..\obj\heap_4.o: ..\BSP\iwdog\iwdog.h
 ..\obj\heap_4.o: ..\PTC\nb-iot\nbiot.h

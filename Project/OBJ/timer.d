@@ -43,10 +43,6 @@
 ..\obj\timer.o: ..\BSP\bsp.h
 ..\obj\timer.o: ..\BSP\timer\timer.h
 ..\obj\timer.o: ..\BSP\usart\usart3_pm.h
-..\obj\timer.o: ..\BSP\bsp.h
-..\obj\timer.o: ..\PTC\ptc.h
-..\obj\timer.o: ..\APP\app.h
-..\obj\timer.o: ..\..\ARM-Cortex-M3\CORE\stm32f10x_it.h
 ..\obj\timer.o: ..\BSP\usart\usart2_send.h
 ..\obj\timer.o: ..\..\FreeRTOS\include\FreeRTOS.h
 ..\obj\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
@@ -62,6 +58,8 @@
 ..\obj\timer.o: ..\..\FreeRTOS\include\deprecated_definitions.h
 ..\obj\timer.o: ..\..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
 ..\obj\timer.o: ..\..\FreeRTOS\include\mpu_wrappers.h
+..\obj\timer.o: ..\..\ARM-Cortex-M3\CORE\stm32f10x_it.h
+..\obj\timer.o: ..\PTC\ptc.h
 ..\obj\timer.o: ..\ALG\kalman\kalman.h
 ..\obj\timer.o: ..\BSP\iwdog\iwdog.h
 ..\obj\timer.o: ..\PTC\nb-iot\nbiot.h

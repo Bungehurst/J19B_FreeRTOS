@@ -53,7 +53,6 @@
 ..\obj\tasks.o: ..\BSP\bsp.h
 ..\obj\tasks.o: ..\ALG\kalman\kalman.h
 ..\obj\tasks.o: ..\BSP\usart\usart3_pm.h
-..\obj\tasks.o: ..\APP\app.h
 ..\obj\tasks.o: ..\BSP\usart\usart2_send.h
 ..\obj\tasks.o: ..\BSP\iwdog\iwdog.h
 ..\obj\tasks.o: ..\PTC\nb-iot\nbiot.h

@@ -52,7 +52,6 @@
 ..\obj\list.o: ..\BSP\bsp.h
 ..\obj\list.o: ..\ALG\kalman\kalman.h
 ..\obj\list.o: ..\BSP\usart\usart3_pm.h
-..\obj\list.o: ..\APP\app.h
 ..\obj\list.o: ..\BSP\usart\usart2_send.h
 ..\obj\list.o: ..\BSP\iwdog\iwdog.h
 ..\obj\list.o: ..\PTC\nb-iot\nbiot.h

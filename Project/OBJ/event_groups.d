@@ -52,7 +52,6 @@
 ..\obj\event_groups.o: ..\BSP\bsp.h
 ..\obj\event_groups.o: ..\ALG\kalman\kalman.h
 ..\obj\event_groups.o: ..\BSP\usart\usart3_pm.h
-..\obj\event_groups.o: ..\APP\app.h
 ..\obj\event_groups.o: ..\BSP\usart\usart2_send.h
 ..\obj\event_groups.o: ..\BSP\iwdog\iwdog.h
 ..\obj\event_groups.o: ..\PTC\nb-iot\nbiot.h

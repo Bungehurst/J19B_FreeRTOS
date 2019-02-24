@@ -61,7 +61,6 @@
 ..\obj\usart2_send.o: ..\BSP\bsp.h
 ..\obj\usart2_send.o: ..\ALG\kalman\kalman.h
 ..\obj\usart2_send.o: ..\BSP\usart\usart3_pm.h
-..\obj\usart2_send.o: ..\APP\app.h
 ..\obj\usart2_send.o: ..\BSP\iwdog\iwdog.h
 ..\obj\usart2_send.o: ..\PTC\nb-iot\nbiot.h
 ..\obj\usart2_send.o: ..\ALG\hexstring\hexstring.h

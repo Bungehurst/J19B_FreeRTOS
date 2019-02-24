@@ -137,7 +137,14 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[0] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3303,0");
+				while(1)
+				{
+					if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3303,0")!=NULL)
+					{
+						observeMsgIdPos2[0] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3303,0");
+						break;
+					}
+				}
 				if(observeMsgIdPos2[0])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[0]-9+i_1)!=',';i_1++);
@@ -154,7 +161,14 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[1] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3304,0");
+				while(1)
+				{
+					if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3304,0")!=NULL)
+					{
+						observeMsgIdPos2[1] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3304,0");
+						break;
+					}
+				}
 				if(observeMsgIdPos2[1])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[1]-9+i_1)!=',';i_1++);
@@ -171,7 +185,15 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[3] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,0");
+				while(1)
+				{
+					if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,0")!=NULL)
+					{
+						observeMsgIdPos2[3] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,0");
+						break;
+					}
+				}
+
 				if(observeMsgIdPos2[3])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[3]-9+i_1)!=',';i_1++);
@@ -188,7 +210,11 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[4] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,1");
+				if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,1")!=NULL)
+				{
+					observeMsgIdPos2[4] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,1");
+					break;
+				}
 				if(observeMsgIdPos2[4])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[4]-9+i_1)!=',';i_1++);
@@ -205,7 +231,11 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[5] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,2");
+				if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,2")!=NULL)
+				{
+					observeMsgIdPos2[5] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,2");
+					break;
+				}
 				if(observeMsgIdPos2[5])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[5]-9+i_1)!=',';i_1++);
@@ -222,7 +252,11 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[6] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,3");
+				if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,3")!=NULL)
+				{
+					observeMsgIdPos2[6] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3315,3");
+					break;
+				}
 				if(observeMsgIdPos2[6])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[6]-9+i_1)!=',';i_1++);
@@ -239,7 +273,11 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[7] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,0");
+				if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,0")!=NULL)
+				{
+					observeMsgIdPos2[7] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,0");
+					break;
+				}
 				if(observeMsgIdPos2[7])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[7]-9+i_1)!=',';i_1++);
@@ -256,7 +294,11 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[8] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,1");
+				if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,1")!=NULL)
+				{
+					observeMsgIdPos2[8] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,1");
+					break;
+				}
 				if(observeMsgIdPos2[8])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[8]-9+i_1)!=',';i_1++);
@@ -273,7 +315,11 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[9] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,2");
+				if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,2")!=NULL)
+				{
+					observeMsgIdPos2[9] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,2");
+					break;
+				}
 				if(observeMsgIdPos2[9])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[9]-9+i_1)!=',';i_1++);
@@ -290,7 +336,11 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[10] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,3");
+				if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,3")!=NULL)
+				{
+					observeMsgIdPos2[10] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3316,3");
+					break;
+				}
 				if(observeMsgIdPos2[10])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[10]-9+i_1)!=',';i_1++);
@@ -307,7 +357,11 @@ uint8_t NB_SendRegistrationRequest(void)
 			timeOutCount_2 = count;
 			while(1)
 			{
-				observeMsgIdPos2[2] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3323,0");
+				if(strstr((const char *)USART2_RX_BUF,(const char *)"1,3323,0")!=NULL)
+				{
+					observeMsgIdPos2[2] = strstr((const char *)USART2_RX_BUF,(const char *)"1,3323,0");
+					break;
+				}
 				if(observeMsgIdPos2[2])
 				{
 					for(i_1 = 0;*(observeMsgIdPos2[2]-9+i_1)!=',';i_1++);

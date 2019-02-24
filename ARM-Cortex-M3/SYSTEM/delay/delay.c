@@ -6,21 +6,7 @@
 #include "FreeRTOS.h"					//FreeRTOS使用		  
 #include "task.h" 
 #endif
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK STM32开发板
-//使用SysTick的普通计数模式对延迟进行管理(支持OS)
-//包括delay_us,delay_ms
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//创建日期:2016/11/28
-//版本：V1.8
-//版权所有，盗版必究。
-//Copyright(C) 广州市星翼电子科技有限公司 2009-2019
-//All rights reserved
-//********************************************************************************
-//修改说明
-//////////////////////////////////////////////////////////////////////////////////  
+
 
 static u8  fac_us=0;							//us延时倍乘数			   
 static u16 fac_ms=0;							//ms延时倍乘数,在ucos下,代表每个节拍的ms数
@@ -28,7 +14,7 @@ static u16 fac_ms=0;							//ms延时倍乘数,在ucos下,代表每个节拍的ms数
  
 extern void xPortSysTickHandler(void);
 
-//systick中断服务函数,使用ucos时用到
+//systick中断服务函数
 void SysTick_Handler(void)
 {	
     if(xTaskGetSchedulerState()!=taskSCHEDULER_NOT_STARTED)//系统已经运行

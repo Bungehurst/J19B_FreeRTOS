@@ -52,7 +52,6 @@
 ..\obj\timers.o: ..\BSP\bsp.h
 ..\obj\timers.o: ..\ALG\kalman\kalman.h
 ..\obj\timers.o: ..\BSP\usart\usart3_pm.h
-..\obj\timers.o: ..\APP\app.h
 ..\obj\timers.o: ..\BSP\usart\usart2_send.h
 ..\obj\timers.o: ..\BSP\iwdog\iwdog.h
 ..\obj\timers.o: ..\PTC\nb-iot\nbiot.h

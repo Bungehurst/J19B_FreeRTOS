@@ -51,7 +51,6 @@
 ..\obj\segger_sysview_freertos.o: ..\BSP\bsp.h
 ..\obj\segger_sysview_freertos.o: ..\ALG\kalman\kalman.h
 ..\obj\segger_sysview_freertos.o: ..\BSP\usart\usart3_pm.h
-..\obj\segger_sysview_freertos.o: ..\APP\app.h
 ..\obj\segger_sysview_freertos.o: ..\BSP\usart\usart2_send.h
 ..\obj\segger_sysview_freertos.o: ..\BSP\iwdog\iwdog.h
 ..\obj\segger_sysview_freertos.o: ..\PTC\nb-iot\nbiot.h

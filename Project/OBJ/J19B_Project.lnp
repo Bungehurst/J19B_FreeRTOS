@@ -5,6 +5,7 @@
 "..\obj\queue.o"
 "..\obj\tasks.o"
 "..\obj\timers.o"
+"..\obj\stream_buffer.o"
 "..\obj\port.o"
 "..\obj\heap_4.o"
 "..\obj\core_cm3.o"

@@ -51,7 +51,6 @@
 ..\obj\port.o: ..\BSP\bsp.h
 ..\obj\port.o: ..\ALG\kalman\kalman.h
 ..\obj\port.o: ..\BSP\usart\usart3_pm.h
-..\obj\port.o: ..\APP\app.h
 ..\obj\port.o: ..\BSP\usart\usart2_send.h
 ..\obj\port.o: ..\BSP\iwdog\iwdog.h
 ..\obj\port.o: ..\PTC\nb-iot\nbiot.h
