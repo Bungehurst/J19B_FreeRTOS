@@ -1,6 +1,0 @@
---c99 -c --cpu Cortex-M3 -g -O2 --apcs=interwork --split_sections -I ..\..\ARM-Cortex-M3\CORE -I ..\..\ARM-Cortex-M3\FWLib\inc -I ..\..\ARM-Cortex-M3\SYSTEM\delay -I ..\..\ARM-Cortex-M3\SYSTEM\sys -I ..\..\SystemView\SEGGER -I ..\BSP -I ..\APP -I ..\PTC -I ..\BSP\iic -I ..\BSP\led -I ..\BSP\timer -I ..\BSP\usart -I ..\PTC\ads1115 -I ..\PTC\gy68 -I ..\PTC\sht31 -I ..\ALG\kalman -I ..\ALG\avrfilter -I ..\PTC\nb-iot -I ..\ALG\hexstring -I ..\BSP\iwdog -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\..\SystemView\Config -I ..\..\SystemView\Sample\FreeRTOSV10\Config -I ..\..\SystemView\Sample\FreeRTOSV10\Patch -I ..\..\SystemView\Sample\FreeRTOSV10 -I ..\USR
--I.\RTE\_STM32F103ZET6
--ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include
--ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
--D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER
--o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d "main.c"

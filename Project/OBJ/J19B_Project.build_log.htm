@@ -27,16 +27,10 @@ Project File Date:  02/24/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F103ZET6'
-compiling usart3_pm.c...
-..\BSP\usart\usart3_pm.c(104): error:  #20: identifier "BufferFromDma" is undefined
-  		xBytesSent = xMessageBufferSendFromISR( BufferFromDma ,
-..\BSP\usart\usart3_pm.c(164): error:  #20: identifier "Pm2" is undefined
-  		Pm2  = ((buffer_inorder[3]<<8)+buffer_inorder[2])/10;//  ug/m3
-..\BSP\usart\usart3_pm.c(165): error:  #20: identifier "Pm10" is undefined
-  		Pm10 = ((buffer_inorder[5]<<8)+buffer_inorder[4])/10;
-..\BSP\usart\usart3_pm.c: 0 warnings, 3 errors
-compiling main.c...
-"..\OBJ\J19B_Project.axf" - 3 Error(s), 0 Warning(s).
+linking...
+Program Size: Code=18852 RO-data=536 RW-data=248 ZI-data=26656  
+FromELF: creating hex file...
+"..\OBJ\J19B_Project.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -59,7 +53,6 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.1.2
-Target not created.
 Build Time Elapsed:  00:00:02
 </pre>
 </body>

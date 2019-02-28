@@ -11,16 +11,13 @@
   */  
 /* Includes ------------------------------------------------------------------*/
 #include "usart3_pm.h"
-
+#include "OS_Task.h"
 #include "includes.h"
-
 /* Varibales -----------------------------------------------------------------*/
 u8 buffer_usart3[BUFFER_LENTH];
-u8 buffer_temp[BUFFER_LENTH];
-u8 buffer_inorder[BUFFER_LENTH];
 /********************************************************************
 **Function: USART3_PM_Init
-**Note 		: USART3初始化及配置，USART3是PM传感器的接口
+**Note 		: USART3 Initialize and Configuration , Usart3 is the port of PM Sensor
 **Input 	: None
 **Output 	: None
 **Use 		: USART3_PM_Init();
@@ -95,12 +92,12 @@ void USART3_PM_DMA_Init(void)
 *********************************************************************/
 void DMA1_Channel3_IRQHandler(void)
 {
+	size_t xBytesSent;
+	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 	if(DMA_GetITStatus(DMA1_IT_TC3))
   {
 		DMA_ClearFlag(DMA1_IT_TC3);
 		DMA_ClearITPendingBit(DMA1_IT_TC3);
-		size_t xBytesSent;
-		BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 		xBytesSent = xMessageBufferSendFromISR( BufferFromDma ,
 												(void * ) buffer_usart3[0],
 												sizeof(buffer_usart3),
@@ -109,60 +106,10 @@ void DMA1_Channel3_IRQHandler(void)
 		{
 			printf("there was not enough free space in the buffer !");
 		}
+		memset(buffer_usart3,0x00,sizeof(buffer_usart3));
+		/* Scheduler to highest priority task when quit from ISR */
 		portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-//		if(buffer_usart3[0]==0xAA && buffer_usart3[1]==0xC0)			
-//		{
-//			int u;
-//			for(u = 0;u < BUFFER_LENTH;u++) buffer_inorder[u]=buffer_usart3[u];
-//			packet_dec();
-//		}else
-//		{
-//			int i,j,k,bit;
-//			if(buffer_temp[BUFFER_LENTH-1]==0xAA&&buffer_usart3[0]==0xAA)	
-//			{
-//				bit = BUFFER_LENTH-1;
-//			}else 
-//			{
-//				for(i = 0;i < BUFFER_LENTH;i++)										
-//				{
-//						if(buffer_temp[i]==0xAA && buffer_temp[i+1]==0xAA) bit = i;		
-//				}
-//			}
-//			for(j = 0;j < BUFFER_LENTH-bit;j++)										
-//			{																											
-//				buffer_inorder[j]=buffer_temp[j+bit];
-//			}
-//			for(k = 0;k < bit;k++)														 	
-//			{																											
-//				buffer_inorder[k+BUFFER_LENTH-bit]=buffer_usart3[k];
-//			}
-//			for(j = 0;j <BUFFER_LENTH;j++)												
-//			{
-//				buffer_temp[j]=buffer_usart3[j];
-//			}
-//			packet_dec();
-//		}
-//		STM32_LED_PM = !STM32_LED_PM;
 	}
 }
-/********************************************************************
-**Function: packet_dec
-**Note 		: 
-**Input 	: None
-**Output 	: None
-**Use 		: packet_dec();
-*********************************************************************/
-void packet_dec(void)
-{
-	u16 sum = 0;
-	for (int i = 2;i <= 7;i++)
-	{
-		sum+=buffer_inorder[i];
-	}
-	if((sum&0xff) & buffer_inorder[8])
-	{
-		Pm2  = ((buffer_inorder[3]<<8)+buffer_inorder[2])/10;//  ug/m3
-		Pm10 = ((buffer_inorder[5]<<8)+buffer_inorder[4])/10;
-	}
-}
+
 

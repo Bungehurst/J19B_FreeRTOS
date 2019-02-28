@@ -30,6 +30,7 @@
 ..\obj\usart3_pm.o: ..\..\ARM-Cortex-M3\FWLib\inc\stm32f10x_usart.h
 ..\obj\usart3_pm.o: ..\..\ARM-Cortex-M3\FWLib\inc\stm32f10x_wwdg.h
 ..\obj\usart3_pm.o: ..\..\ARM-Cortex-M3\FWLib\inc\misc.h
+..\obj\usart3_pm.o: ..\APP\OS_Task.h
 ..\obj\usart3_pm.o: ..\USR\includes.h
 ..\obj\usart3_pm.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\usart3_pm.o: ..\..\ARM-Cortex-M3\SYSTEM\delay\delay.h

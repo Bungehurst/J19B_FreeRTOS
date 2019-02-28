@@ -39,7 +39,7 @@
 "..\obj\ads1115.o"
 "..\obj\sht31.o"
 "..\obj\bmp180.o"
-"..\obj\app.o"
+"..\obj\os_task.o"
 "..\obj\kalman.o"
 "..\obj\avrfilter.o"
 "..\obj\hexstring.o"

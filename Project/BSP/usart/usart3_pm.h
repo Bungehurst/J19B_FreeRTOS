@@ -3,12 +3,10 @@
 #include "sys.h"
 
 #define BUFFER_LENTH 10
+
 extern u8 buffer_usart3[BUFFER_LENTH];
-extern u8 buffer_temp[BUFFER_LENTH];
-extern u8 buffer_inorder[BUFFER_LENTH];
 
 void USART3_PM_Init(u32 bound);
-void packet_dec(void);
 void USART3_PM_DMA_Init(void);
 
 #endif
